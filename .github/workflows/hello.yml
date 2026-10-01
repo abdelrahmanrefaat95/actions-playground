@@ -1,0 +1,14 @@
+name: hello
+on:
+  push:
+  workflow_dispatch:
+jobs:
+  say-hello:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Greet
+        run: echo "Hello from ${{ github.actor }} on ${{ github.ref_name }}"
+      - name: Show the machine
+        run: |
+          uname -a
+          echo "Runner OS is $RUNNER_OS"
