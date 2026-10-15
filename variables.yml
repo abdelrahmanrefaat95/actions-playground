@@ -1,0 +1,20 @@
+name: values
+on: workflow_dispatch
+env:
+  COURSE: devops
+jobs:
+  show:
+    runs-on: ubuntu-latest
+    env:
+      LEVEL: beginner
+    steps:
+      - name: Read values
+        env:
+          STEP_ONLY: just-here
+        run: |
+          echo "course=$COURSE level=$LEVEL step=$STEP_ONLY"
+          echo "variable=${{ vars.GREETING }}"
+          echo "secret=${{ secrets.SECRET_WORD }}"
+          echo "commit=${{ github.sha }} run=${{ github.run_number }}"
+      - name: Write a summary
+        run: echo "### Ran by ${{ github.actor }}" >> "$GITHUB_STEP_SUMMARY"
